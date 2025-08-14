@@ -17,13 +17,22 @@ const CartItem = ({ onContinueShopping }) => {
         return total; 
   };
 
+  const calculateTotalPlantsNumber = () => {
+        const itemsNumber = cart.reduce((total, currPlant) =>
+    {
+        total += currPlant.quantity;
+        return total;
+    }, 0);
+        return itemsNumber; 
+  };
+
   const handleContinueShopping = (e) => {
         onContinueShopping(e);
     
   };
 
   const handleCheckoutShopping = (e) => {
-    alert('Functionality to be added for future reference');
+    alert('Coming Soon');
   };
 
 
@@ -55,6 +64,7 @@ const CartItem = ({ onContinueShopping }) => {
   return (
     <div className="cart-container">
       <h2 style={{ color: 'black' }}>Total Cart Amount: ${calculateTotalAmount()}</h2>
+      <h2 style={{ color: 'black' }}>Total Number Of Plants: {calculateTotalPlantsNumber()}</h2>
       <div>
         {cart.map(item => (
           <div className="cart-item" key={item.name}>
@@ -77,7 +87,7 @@ const CartItem = ({ onContinueShopping }) => {
       <div className="continue_shopping_btn">
         <button className="get-started-button" onClick={(e) => handleContinueShopping(e)}>Continue Shopping</button>
         <br />
-        <button className="get-started-button1">Checkout</button>
+        <button className="get-started-button1" onClick={(e)=>handleCheckoutShopping(e)}>Checkout</button>
       </div>
     </div>
   );
